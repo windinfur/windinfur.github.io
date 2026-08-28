@@ -15,7 +15,7 @@ const tools = [
 ]
 
 const demos = [
-  { title: '即将发布', desc: '各种好玩的 Demo 会记录在这里。', tag: 'Demo' },
+  { title: '修狗巨人', desc: 'HTML5 Canvas 小游戏，支持键盘与触屏虚拟摇杆操作。', tag: 'Demo', href: '/game.html' },
 ]
 </script>
 
@@ -63,11 +63,11 @@ const demos = [
       <section id="demos" class="section">
         <h2 class="section-title">Demo</h2>
         <div class="cards">
-          <article v-for="d in demos" :key="d.title" class="card">
+          <a v-for="d in demos" :key="d.title" :href="d.href" class="card card-link">
             <span class="card-tag">{{ d.tag }}</span>
             <h3 class="card-title">{{ d.title }}</h3>
             <p class="card-desc">{{ d.desc }}</p>
-          </article>
+          </a>
         </div>
       </section>
     </main>
