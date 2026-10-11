@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "可玩",
+        "开发中",
+        "计划中"
+      ]
+    },
+    "entry": {
+      "type": "string"
+    },
+    "order": {
+      "default": 99,
+      "type": "number"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "status"
+  ]
+}

@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import RowList from '../../components/RowList.astro';
+import { getCollection } from 'astro:content';
+
+const pad = (n) => String(n).padStart(2, '0');
+const fmtDate = (d) => d.toISOString().slice(0, 10).replace(/-/g, '.');
+
+const articles = (await getCollection('articles'))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const items = articles.map((a, i) => ({
+  index: pad(i + 1),
+  title: a.data.title,
+  meta: fmtDate(a.data.date),
+  href: `/articles/${a.id}`,
+}));
+---
+<Base title="文章" description="前端技术笔记与踩坑总结。" active="文章">
+  <div class="page-head">
+    <h1 class="page-title">文章</h1>
+    <p class="page-sub">技术笔记与踩坑总结。</p>
+  </div>
+  <section class="section">
+    <RowList items={items} stacked />
+  </section>
+</Base>

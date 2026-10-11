@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import RowList from '../components/RowList.astro';
+
+const links = [
+  { index: '01', title: 'GitHub', meta: '@windinfur', href: 'https://github.com/windinfur' },
+  { index: '02', title: '邮箱', meta: 'leeworkonly@163.com', href: 'mailto:leeworkonly@163.com' },
+  { index: '03', title: '微信', meta: '备注来意', href: '/about' },
+];
+---
+<Base title="关于" description="关于我，以及联系方式。" active="关于">
+  <div class="page-head">
+    <h1 class="page-title">关于</h1>
+  </div>
+  <section class="about-body">
+    <p>
+      前端工程师，日常和 Vue、工程化以及各种小工具打交道。这里记录我折腾过的技术，也放一些自己做的小工具——如果刚好能帮上你，那就更好了。
+    </p>
+  </section>
+  <section class="section">
+    <span class="section-label">联系 / ELSEWHERE</span>
+    <RowList items={links} />
+  </section>
+</Base>

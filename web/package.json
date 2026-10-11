@@ -1,0 +1,19 @@
+{
+  "name": "bkyy-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "不可以已 · 个人网站（Astro）",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/vue": "^7.0.3",
+    "astro": "^7.3.8",
+    "vue": "^3.5.43"
+  }
+}

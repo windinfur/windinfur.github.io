@@ -1,0 +1,20 @@
+---
+const { active } = Astro.props;
+const nav = [
+  { label: '作品', href: '/works' },
+  { label: '文章', href: '/articles' },
+  { label: '小游戏', href: '/games' },
+  { label: '关于', href: '/about' },
+];
+---
+<header class="site-header">
+  <a class="brand" href="/">
+    <span class="dot"></span>
+    <span>不可以已</span>
+  </a>
+  <nav class="nav">
+    {nav.map((item) => (
+      <a href={item.href} class={item.label === active ? 'is-active' : ''}>{item.label}</a>
+    ))}
+  </nav>
+</header>

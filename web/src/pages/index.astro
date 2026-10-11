@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import RowList from '../components/RowList.astro';
+import { getCollection } from 'astro:content';
+
+const pad = (n) => String(n).padStart(2, '0');
+const fmtDate = (d) => d.toISOString().slice(0, 10).replace(/-/g, '.');
+
+const works = (await getCollection('works')).sort((a, b) => a.data.order - b.data.order);
+const articles = (await getCollection('articles'))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const workItems = works.slice(0, 3).map((w, i) => ({
+  index: pad(i + 1),
+  title: w.data.title,
+  meta: w.data.status ?? w.data.kind,
+  href: w.data.link ?? '/works',
+}));
+
+const articleItems = articles.slice(0, 3).map((a, i) => ({
+  index: pad(i + 1),
+  title: a.data.title,
+  meta: fmtDate(a.data.date),
+  href: `/articles/${a.id}`,
+}));
+---
+<Base title="记录与分享" description="一个前端程序员的技术笔记与工具箱。">
+  <section class="screen">
+    <div>
+      <h1 class="hero-title">
+        记录与分享<br />
+        <span class="hero-line">
+          <span>技术与工具。</span>
+          <img class="illo" src="/hero.jpg" alt="" />
+        </span>
+      </h1>
+      <p class="hero-sub">前端工程师</p>
+    </div>
+    <a class="scroll-hint" href="#below">↓ 下滑</a>
+  </section>
+
+  <section class="section" id="below">
+    <span class="section-label">01 / 作品</span>
+    <RowList items={workItems} />
+  </section>
+
+  <section class="section">
+    <span class="section-label">02 / 文章</span>
+    <RowList items={articleItems} />
+  </section>
+</Base>

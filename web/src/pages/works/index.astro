@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import RowList from '../../components/RowList.astro';
+import { getCollection } from 'astro:content';
+
+const pad = (n) => String(n).padStart(2, '0');
+const works = (await getCollection('works')).sort((a, b) => a.data.order - b.data.order);
+
+const items = works.map((w, i) => ({
+  index: pad(i + 1),
+  title: w.data.title,
+  meta: w.data.status ?? w.data.kind,
+  href: w.data.link ?? '/works',
+}));
+
+items.push({ index: pad(items.length + 1), title: '更多作品', meta: '陆续加', href: '/works' });
+---
+<Base title="作品" description="自己写的小工具与 Demo。" active="作品">
+  <div class="page-head">
+    <h1 class="page-title">作品</h1>
+    <p class="page-sub">工具、Demo，以及还在折腾的东西。</p>
+  </div>
+  <section class="section">
+    <RowList items={items} />
+  </section>
+</Base>

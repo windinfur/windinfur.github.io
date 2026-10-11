@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import RowList from '../../components/RowList.astro';
+import { getCollection } from 'astro:content';
+
+const pad = (n) => String(n).padStart(2, '0');
+const games = (await getCollection('games')).sort((a, b) => a.data.order - b.data.order);
+
+const items = games.map((g, i) => ({
+  index: pad(i + 1),
+  title: g.data.title,
+  meta: g.data.status,
+  href: g.data.entry ?? '/games',
+}));
+
+items.push({ index: pad(items.length + 1), title: '想玩什么', meta: '告诉我', href: '/about' });
+---
+<Base title="小游戏" description="打开即玩的小游戏，不用登录。" active="小游戏">
+  <div class="page-head">
+    <h1 class="page-title">小游戏</h1>
+    <p class="page-sub">打开即玩，不用登录。</p>
+  </div>
+  <section class="section">
+    <RowList items={items} />
+  </section>
+</Base>
