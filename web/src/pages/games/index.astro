@@ -12,8 +12,6 @@ const items = games.map((g, i) => ({
   meta: g.data.status,
   href: g.data.entry ?? '/games',
 }));
-
-items.push({ index: pad(items.length + 1), title: '想玩什么', meta: '告诉我', href: '/about' });
 ---
 <Base title="小游戏" description="打开即玩的小游戏，不用登录。" active="小游戏">
   <div class="page-head">
