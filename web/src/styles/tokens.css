@@ -10,6 +10,7 @@
   --content: 1280px;
   --reading: 860px;
   --pad: 32px;
+  --header-h: 58px;
 
   --font-body: 'Noto Sans SC', system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -28,6 +29,7 @@
 @media (max-width: 1023px) {
   :root {
     --pad: 20px;
+    --header-h: 39px;
     --hero-size: 42px;
     --page-title: 40px;
     --detail-title: 32px;
@@ -150,7 +152,8 @@ img {
 /* 首屏 */
 .screen {
   display: flex;
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100dvh - var(--header-h));
   flex-direction: column;
   justify-content: space-between;
   gap: 48px;
@@ -196,7 +199,8 @@ img {
 
 @media (max-width: 1023px) {
   .screen {
-    min-height: auto;
+    min-height: calc(100vh - var(--header-h));
+    min-height: calc(100dvh - var(--header-h));
     padding: 70px 0 60px;
   }
   .hero-line {
@@ -242,6 +246,10 @@ img {
 /* 列表 */
 .section {
   padding-bottom: 90px;
+}
+
+#below {
+  padding-top: 80px;
 }
 
 .section-label {
@@ -319,6 +327,9 @@ img {
 @media (max-width: 1023px) {
   .section {
     padding-bottom: 56px;
+  }
+  #below {
+    padding-top: 48px;
   }
   .section-label {
     margin-bottom: 16px;
